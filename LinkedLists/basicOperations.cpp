@@ -20,13 +20,31 @@ void insertAtHead(int data, Node* &head){
     head = temp;
 }
 
-void insertAtTail(int data, Node* &head){
+void insertAtTail(int data, Node* &tail){
+    Node* temp = new Node(data);
+    tail->next = temp;
+    tail = temp;
+}
+
+void insertAtPos(int data, Node* &head,Node* &tail, int pos){
     Node* temp = new Node(data);
     Node* I = head;
-    while(I->next != NULL){
-        I = I->next;
+    int count = 1;
+    if(pos == 1){
+        insertAtHead(data,head);
+        return;
     }
+    while(count < pos-1){
+        I = I->next;
+        if(I->next == NULL){
+            insertAtTail(data,tail);
+            return;
+        }
+        count++;
+    }
+    Node* next = I->next;
     I->next = temp;
+    temp->next = next;
 }
 
 void print(Node* &head){
@@ -39,9 +57,14 @@ void print(Node* &head){
 
 int main() {
     Node *n1 = new Node(10);
-    insertAtHead(20,n1);
-    insertAtTail(30,n1);
-    print(n1);
+    Node *head = n1;
+    Node *tail = n1;
+    insertAtHead(20,head);
+    insertAtTail(30,tail);
+    insertAtTail(30,tail);
+    insertAtPos(50,head,tail,5);
+    insertAtTail(69,tail);
+    print(head);
 
     return 0;
 }
