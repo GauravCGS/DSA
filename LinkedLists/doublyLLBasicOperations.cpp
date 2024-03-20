@@ -110,18 +110,32 @@ void showHeadTail(Node* &head,Node* &tail){
     return;
 }
 
+void reverseLL(Node* &head){
+    Node* temp = head;
+    Node* curr = head;
+    while(curr!= NULL){
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+        curr = curr->prev;
+    }
+    head = temp->prev;
+}
+
 int main() {
     Node* N = new Node(90);
     Node* head = N;
     Node* tail = N;
     insertAtHead(head,10);
     insertAtHead(head,20);
-    insertAtTail(tail,20);
+    insertAtTail(tail,40);
     insertAtTail(tail,300);
     print(head);
     deleteNode(5,head,tail);
     print(head);
     insertAtPos(3,head,tail,50);
+    print(head);
+    reverseLL(head);
     print(head);
     return 0;
 }
