@@ -119,7 +119,7 @@ void reverseLL(Node* &head){
         curr->next = temp;
         curr = curr->prev;
     }
-    head = temp->prev;
+    if(temp!=NULL)head = temp->prev;
 }
 
 int main() {
