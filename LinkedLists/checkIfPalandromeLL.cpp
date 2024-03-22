@@ -27,6 +27,56 @@
 *****************************************************************/
 #include<bits/stdc++.h>
 
+void reverseLL(Node* &head){
+    Node* curr = head;
+    Node* temp = head;
+    Node* prev = NULL;
+    while(curr!=NULL){
+        temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    head = prev;
+}
+
+Node* findMid(Node* head){
+    Node* slow = head;
+    Node* fast = head;
+    while(fast->next!=NULL && fast->next->next!=NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+bool compare(Node* A, Node* B){
+    while(A!=NULL && B!=NULL){
+        if(A->data != B->data) return false;
+        A=A->next;
+        B=B->next;
+    }
+    return true;
+}
+
+bool isPalindrome(Node *head)
+{
+    // write your code here
+    Node* temp = head;
+    Node* mid = findMid(head);
+    reverseLL(mid->next);
+    return compare(temp,mid->next);
+}
+// This function does not take any extra space
+bool isPalindromeWithoutExtraSpace(Node *head)
+{
+    // write your code here
+    Node* temp = head;
+    Node* mid = findMid(head);
+    reverseLL(mid->next);
+    return compare(temp,mid->next);
+}
+//This function uses extra space, A stack
 bool isPalindrome(Node *head)
 {
     // write your code here
