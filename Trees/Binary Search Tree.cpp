@@ -63,6 +63,33 @@ void bfsR(Node* &root){
     }
 }
 
+void inorderTraversal(Node* root){
+    Node* temp = root;
+    if(temp == NULL) return;
+    inorderTraversal(temp->left);
+    cout<<temp->data<<" ";
+    inorderTraversal(temp->right);
+    return;
+}
+
+void preorderTraversal(Node* root){
+    Node* temp = root;
+    if(temp == NULL) return;
+    cout<<temp->data<<" ";
+    preorderTraversal(temp->left);
+    preorderTraversal(temp->right);
+    return;
+}
+
+void postorderTraversal(Node* root){
+    Node* temp = root;
+    if(temp == NULL) return;
+    postorderTraversal(temp->left);
+    postorderTraversal(temp->right);
+    cout<<temp->data<<" ";
+    return;
+}
+
 int main() {
     // Write C++ code here
     // cout << "Try programiz.pro";
@@ -70,6 +97,12 @@ int main() {
     createTree(root);
     cout<<endl;
     // cout<<root->data;
-    bfsR(root);
+    bfsR(root);cout<<endl;
+    cout<<"inorder : ";
+    inorderTraversal(root);cout<<endl;
+    cout<<"preorder : ";
+    preorderTraversal(root);cout<<endl;
+    cout<<"postorder : ";
+    postorderTraversal(root);cout<<endl;
     return 0;
 }
