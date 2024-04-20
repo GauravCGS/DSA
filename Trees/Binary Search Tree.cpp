@@ -33,15 +33,33 @@ void createTree(Node* &root){
 
 void bfs(Node* &root){
     if(root == NULL) return;
-    Node* temp = root;
     queue<Node*> qt;
-    qt.push(temp);
+    qt.push(root);
     while(!qt.empty()){
-        temp = qt.front();
+        Node *temp = qt.front();
         cout<<temp->data<<" ";
         qt.pop();
         if(temp->left)qt.push(temp->left);
         if(temp->right)qt.push(temp->right);
+    }
+}
+
+void bfsR(Node* &root){
+    if(root == NULL) return;
+    queue<Node*> qt;
+    stack<int> st;
+    qt.push(root);
+    while(!qt.empty()){
+        Node *temp = qt.front();
+        // cout<<temp->data<<" ";
+        st.push(temp->data);
+        qt.pop();
+        if(temp->left)qt.push(temp->left);
+        if(temp->right)qt.push(temp->right);
+    }
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
     }
 }
 
@@ -51,7 +69,7 @@ int main() {
     Node* root = NULL;
     createTree(root);
     cout<<endl;
-    cout<<root->data;
-    bfs(root);
+    // cout<<root->data;
+    bfsR(root);
     return 0;
 }
