@@ -33,7 +33,7 @@ void createTree(Node* &root){
 
 void bfs(Node* &root){
     if(root == NULL) return;
-    Node* temp = NULL;
+    Node* temp = root;
     queue<Node*> qt;
     qt.push(temp);
     while(!qt.empty()){
