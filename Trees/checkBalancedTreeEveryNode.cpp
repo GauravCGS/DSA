@@ -30,3 +30,30 @@ class Solution{
     }
 };
 
+//SOL 2
+
+class Solution{
+    private:
+        int height(Node* node, bool &res){
+            if(node==NULL) {return 0; res = true;};
+            int l = height(node->left,res);
+            int r = height(node->right,res);
+            int h = max(l,r) + 1;
+            if(abs(l-r)<=1) res = res&true;
+            else res = res&false;
+            return h;
+        }
+    public:
+    //Function to check whether a binary tree is balanced or not.
+    bool isBalanced(Node *root)
+    {
+        //  Your Code here
+        Node* node = root;
+        if(node == NULL) return true;
+        bool ans = true;
+        int h = height(root,ans);
+        return ans;
+    }
+};
+
+
